@@ -20,7 +20,7 @@ public class SlideShow : EditorWindow
         GetWindow<SlideShow>().Focus();
     }
 
-   
+
 
     private void OnEnable()
     {
@@ -38,18 +38,18 @@ public class SlideShow : EditorWindow
         }
         m_CurrentSlide = new GUIContent();
         LoadSlidePaths();
- 
+
         Selection.selectionChanged += OnSelectionChanged;
     }
 
     private void OnSelectionChanged()
     {
         Slide[] selectedSlides = Selection.GetFiltered<Slide>(SelectionMode.TopLevel);
-        if(selectedSlides.Length > 0)
+        if (selectedSlides.Length > 0)
         {
-            for(int i = 0; i < m_Slides.Length; i++)
+            for (int i = 0; i < m_Slides.Length; i++)
             {
-                if(m_Slides[i] == selectedSlides[0])
+                if (m_Slides[i] == selectedSlides[0])
                 {
                     JumpTo(i);
                     break;
@@ -108,9 +108,16 @@ public class SlideShow : EditorWindow
                 }
             }
 
-            if(currentSlide.context != null && GUILayout.Button("Context", EditorStyles.toolbarButton))
+            if (currentSlide.context != null && GUILayout.Button("Context", EditorStyles.toolbarButton))
             {
-                Selection.activeObject = currentSlide.context;
+                if (currentSlide.context is TextAsset)
+                {
+                    AssetDatabase.OpenAsset(currentSlide.context, 0);
+                }
+                else
+                {
+                    Selection.activeObject = currentSlide.context;
+                }
             }
 
             GUILayout.FlexibleSpace();
