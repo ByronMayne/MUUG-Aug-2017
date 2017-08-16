@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(menuName="Demo/Base")]
+[CreateAssetMenu(menuName = "Demo/Object Refernces", fileName = "1) Object Reference")]
 public class BaseDemo : ScriptableObject
 {
     public GameObject playerCoat;
@@ -11,5 +11,5 @@ public class BaseDemo : ScriptableObject
     [SerializeField]
     protected AudioClip m_GunSound;
     [SerializeField]
-    protected internal Transform m_PlayerSpawn; 
+    protected internal Transform m_PlayerSpawn;
 }

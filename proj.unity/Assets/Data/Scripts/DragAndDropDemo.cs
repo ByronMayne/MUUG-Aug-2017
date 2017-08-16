@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(menuName = "Demo/Drag and Drop")]
+[CreateAssetMenu(menuName = "Demo/Drag and Drop", fileName = "2) Drag And Drop")]
 public class DragAndDropDemo : ScriptableObject
 {
     [SerializeField, DragAndDrop(typeof(GameObject))]

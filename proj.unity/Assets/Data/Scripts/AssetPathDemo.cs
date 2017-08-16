@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-[CreateAssetMenu(menuName = "Demo/Asset Path")]
+[CreateAssetMenu(menuName = "Demo/Asset Path Data", fileName = "3) Asset Path")]
 public class AssetPathDemo : ScriptableObject
 {
     [SerializeField, AssetPath(typeof(GameObject))]
