@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Slide : ScriptableObject
 {
+    public string title;
     public Texture slideImage;
     public Object[] references;
 

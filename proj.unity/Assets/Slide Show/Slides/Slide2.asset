@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide2
   m_EditorClassIdentifier: 
+  title: Slack + Unity
   slideImage: {fileID: 2800000, guid: 26eb81e36b1d7ff44a33cbcb5b7a3f4b, type: 3}
   references: []

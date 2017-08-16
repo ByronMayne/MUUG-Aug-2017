@@ -32,8 +32,6 @@ public static class PathUtility
         throw new System.NotImplementedException();
     }
 
-
-
     /// <summary>
     /// Converts a a full system path to a local asset path. 
     /// <example>

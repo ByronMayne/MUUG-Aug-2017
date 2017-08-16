@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide18
   m_EditorClassIdentifier: 
+  title: Lipstick On a Pig
   slideImage: {fileID: 2800000, guid: 90eca3a17f1217c448891d442a2bf17c, type: 3}
   references: []

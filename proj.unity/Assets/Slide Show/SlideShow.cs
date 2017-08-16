@@ -1,11 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class SlideShow : EditorWindow
 {
-    private const string MENU_PATH = "MUGG/Open Slide Show #s";
+    private const string MENU_PATH = "MUGG/Open Slide Show &s";
     private const string STATE_PLAYER_PREF_KEY = "SlideShow.State";
     private const float ASPECT_RATIO = 16f / 9f;
 
@@ -16,8 +17,10 @@ public class SlideShow : EditorWindow
     [MenuItem(MENU_PATH)]
     private static void GetWindow()
     {
-        GetWindow<SlideShow>().Focus();   
+        GetWindow<SlideShow>().Focus();
     }
+
+   
 
     private void OnEnable()
     {
@@ -35,12 +38,32 @@ public class SlideShow : EditorWindow
         }
         m_CurrentSlide = new GUIContent();
         LoadSlidePaths();
+ 
+        Selection.selectionChanged += OnSelectionChanged;
+    }
+
+    private void OnSelectionChanged()
+    {
+        Slide[] selectedSlides = Selection.GetFiltered<Slide>(SelectionMode.TopLevel);
+        if(selectedSlides.Length > 0)
+        {
+            FocusWindowIfItsOpen<SlideShow>();
+            for(int i = 0; i < m_Slides.Length; i++)
+            {
+                if(m_Slides[i] == selectedSlides[0])
+                {
+                    JumpTo(i);
+                    break;
+                }
+            }
+        }
     }
 
     public void OnDisable()
     {
         string json = JsonUtility.ToJson(m_State);
         PlayerPrefs.SetString(STATE_PLAYER_PREF_KEY, json);
+        Selection.selectionChanged -= OnSelectionChanged;
     }
 
 
@@ -54,7 +77,7 @@ public class SlideShow : EditorWindow
         float height = position.height;
         float aspectHeight = width / ASPECT_RATIO;
 
-        if(aspectHeight > height)
+        if (aspectHeight > height)
         {
             aspectHeight = height;
             width = aspectHeight * ASPECT_RATIO;
@@ -94,6 +117,19 @@ public class SlideShow : EditorWindow
                 Previous();
             }
 
+            GUIContent jumpLabel = new GUIContent("Jump");
+            Rect jumpButtonRect = GUILayoutUtility.GetRect(jumpLabel, EditorStyles.toolbarButton);
+            if (GUI.Button(jumpButtonRect, jumpLabel, EditorStyles.toolbarButton))
+            {
+                GenericMenu jumpMenu = new GenericMenu();
+                for (int i = 0; i < m_Slides.Length; i++)
+                {
+                    GUIContent label = new GUIContent(i + ": " + m_Slides[i].title);
+                    jumpMenu.AddItem(label, false, (object index) => JumpTo((int)index), i);
+                }
+                jumpMenu.DropDown(jumpButtonRect);
+            }
+
             if (GUILayout.Button(">", EditorStyles.toolbarButton))
             {
                 Next();
@@ -125,6 +161,14 @@ public class SlideShow : EditorWindow
         get { return m_Slides[m_State.currentSlide]; }
     }
 
+    private void JumpTo(int index)
+    {
+        if (index >= 0 && index < m_Slides.Length)
+        {
+            m_State.currentSlide = index;
+            LoadSlide();
+        }
+    }
 
     private void Next()
     {
@@ -135,7 +179,7 @@ public class SlideShow : EditorWindow
             index--;
         }
         m_State.currentSlide = index;
-        LoadCurrentSlide();
+        LoadSlide();
     }
 
     private void Previous()
@@ -147,7 +191,7 @@ public class SlideShow : EditorWindow
             index = 0;
         }
         m_State.currentSlide = index;
-        LoadCurrentSlide();
+        LoadSlide();
     }
 
     private void LoadSlidePaths()
@@ -166,11 +210,11 @@ public class SlideShow : EditorWindow
                 m_Slides[i] = AssetDatabase.LoadAssetAtPath<Slide>(assetPath);
             }
         }
-        LoadCurrentSlide();
+        LoadSlide();
     }
 
 
-    public void LoadCurrentSlide()
+    public void LoadSlide()
     {
         if (m_Slides.Length == 0)
         {

@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide5
   m_EditorClassIdentifier: 
+  title: The Editor Basics
   slideImage: {fileID: 2800000, guid: e0210c09aca1c8f4cae3534947fa757c, type: 3}
   references: []

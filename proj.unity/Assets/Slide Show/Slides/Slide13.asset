@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide13
   m_EditorClassIdentifier: 
+  title: Object Reference
   slideImage: {fileID: 2800000, guid: c5927b7dcd8365b4a9eb69dd2b5e0d15, type: 3}
   references: []

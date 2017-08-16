@@ -11,5 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide17
   m_EditorClassIdentifier: 
+  title: Dragging, Makes every...
   slideImage: {fileID: 2800000, guid: 52b7445200c95684badfc7c6eadaf36a, type: 3}
   references: []
