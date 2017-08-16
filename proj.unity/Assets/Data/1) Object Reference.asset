@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e27547a7931f848b1e7b2efeabf8b1, type: 3}
+  m_Name: 1) Object Reference
+  m_EditorClassIdentifier: 
+  playerCoat: {fileID: 0}
+  m_PlayerPrefab: {fileID: 0}
+  m_GunPrefab: {fileID: 0}
+  m_GunSound: {fileID: 0}
+  m_PlayerSpawn: {fileID: 0}

@@ -47,7 +47,6 @@ public class SlideShow : EditorWindow
         Slide[] selectedSlides = Selection.GetFiltered<Slide>(SelectionMode.TopLevel);
         if(selectedSlides.Length > 0)
         {
-            FocusWindowIfItsOpen<SlideShow>();
             for(int i = 0; i < m_Slides.Length; i++)
             {
                 if(m_Slides[i] == selectedSlides[0])
@@ -107,7 +106,11 @@ public class SlideShow : EditorWindow
                     LoadSlidePaths();
                     m_State.currentSlide = 0;
                 }
+            }
 
+            if(currentSlide.context != null && GUILayout.Button("Context", EditorStyles.toolbarButton))
+            {
+                Selection.activeObject = currentSlide.context;
             }
 
             GUILayout.FlexibleSpace();

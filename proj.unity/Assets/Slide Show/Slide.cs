@@ -8,7 +8,7 @@ public class Slide : ScriptableObject
 {
     public string title;
     public Texture slideImage;
-    public Object[] references;
+    public Object context;
 
     [MenuItem("Slideshow/Create Slides For Selections")]
     public static void CreateSlides()
