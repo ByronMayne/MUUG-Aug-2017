@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide6
   m_EditorClassIdentifier: 
-  title: Visual Editor Types
-  slideImage: {fileID: 2800000, guid: 0367b26bb99be32459160873573ca840, type: 3}
-  references: []
+  title: Editor Types
+  slideImage: {fileID: 2800000, guid: 65d2b4d1ae4798d499244d2bf300c650, type: 3}
+  context: {fileID: 11500000, guid: 80eca9217a1091c47b25e21951705027, type: 3}

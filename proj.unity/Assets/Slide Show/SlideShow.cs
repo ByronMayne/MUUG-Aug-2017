@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
+/// <summary>
+/// This is a hacky script so don't judge me :D
+/// </summary>
 public class SlideShow : EditorWindow
 {
-    private const string MENU_PATH = "MUGG/Open Slide Show &s";
+    private const string MENU_PATH = "Slideshow/Open... &s";
     private const string STATE_PLAYER_PREF_KEY = "SlideShow.State";
     private const float ASPECT_RATIO = 16f / 9f;
 
-    private SlideShowState m_State;
+    private SlideShowState m_State = new SlideShowState();
     private Slide[] m_Slides;
     private GUIContent m_CurrentSlide;
 
@@ -20,21 +22,22 @@ public class SlideShow : EditorWindow
         GetWindow<SlideShow>().Focus();
     }
 
-
-
     private void OnEnable()
     {
+        LoadSlides();
+        m_CurrentSlide = null;
+
         string json = PlayerPrefs.GetString(STATE_PLAYER_PREF_KEY, string.Empty);
         try
         {
             m_State = JsonUtility.FromJson<SlideShowState>(json);
         }
-        catch
-        { }
-
-        if (m_State == null)
+        finally
         {
-            m_State = new SlideShowState();
+            if (m_State == null)
+            {
+                m_State = new SlideShowState();
+            }
         }
         m_CurrentSlide = new GUIContent();
         LoadSlidePaths();
@@ -95,20 +98,21 @@ public class SlideShow : EditorWindow
     {
         EditorGUILayout.BeginHorizontal(EditorStyles.toolbar);
         {
-            if (GUILayout.Button("Load Slides", EditorStyles.toolbarButton))
+            GUIContent jumpLabel = new GUIContent(m_State.currentSlide.ToString("0: "));
+            Rect jumpButtonRect = GUILayoutUtility.GetRect(jumpLabel, EditorStyles.toolbarButton);
+            if (GUI.Button(jumpButtonRect, jumpLabel, EditorStyles.toolbarButton))
             {
-                string defaultPath = string.IsNullOrEmpty(m_State.directory) ? Application.dataPath + "/" : m_State.directory;
-                string slidesDirectory = EditorUtility.OpenFolderPanel("Slides Location", defaultPath, "Slides");
-                slidesDirectory = FileUtil.GetProjectRelativePath(slidesDirectory);
-                if (!slidesDirectory.Equals(m_State.directory, System.StringComparison.Ordinal))
+                GenericMenu jumpMenu = new GenericMenu();
+                for (int i = 0; i < m_Slides.Length; i++)
                 {
-                    m_State.directory = slidesDirectory;
-                    LoadSlidePaths();
-                    m_State.currentSlide = 0;
+                    GUIContent label = new GUIContent(i + ": " + m_Slides[i].title);
+                    jumpMenu.AddItem(label, false, (object index) => JumpTo((int)index), i);
                 }
+                jumpMenu.DropDown(jumpButtonRect);
             }
 
-            if (currentSlide.context != null && GUILayout.Button("Context", EditorStyles.toolbarButton))
+
+            if (currentSlide != null && currentSlide.context != null && GUILayout.Button("Context", EditorStyles.toolbarButton))
             {
                 if (currentSlide.context is TextAsset)
                 {
@@ -127,25 +131,28 @@ public class SlideShow : EditorWindow
                 Previous();
             }
 
-            GUIContent jumpLabel = new GUIContent("Jump");
-            Rect jumpButtonRect = GUILayoutUtility.GetRect(jumpLabel, EditorStyles.toolbarButton);
-            if (GUI.Button(jumpButtonRect, jumpLabel, EditorStyles.toolbarButton))
-            {
-                GenericMenu jumpMenu = new GenericMenu();
-                for (int i = 0; i < m_Slides.Length; i++)
-                {
-                    GUIContent label = new GUIContent(i + ": " + m_Slides[i].title);
-                    jumpMenu.AddItem(label, false, (object index) => JumpTo((int)index), i);
-                }
-                jumpMenu.DropDown(jumpButtonRect);
-            }
+
 
             if (GUILayout.Button(">", EditorStyles.toolbarButton))
             {
                 Next();
             }
+
+            GUILayout.Space(10);
+
+            if (GUILayout.Button("Load Slides", EditorStyles.toolbarButton))
+            {
+                LoadSlides();
+            }
+
         }
         EditorGUILayout.EndHorizontal();
+    }
+
+    private void LoadSlides()
+    {
+        LoadSlidePaths();
+        m_State.currentSlide = 0;
     }
 
     private void HandleInput()
@@ -168,7 +175,14 @@ public class SlideShow : EditorWindow
 
     private Slide currentSlide
     {
-        get { return m_Slides[m_State.currentSlide]; }
+        get
+        {
+            if (m_Slides.Length == 0)
+            {
+                return null;
+            }
+            return m_Slides[m_State.currentSlide];
+        }
     }
 
     private void JumpTo(int index)
@@ -206,20 +220,14 @@ public class SlideShow : EditorWindow
 
     private void LoadSlidePaths()
     {
-        if (string.IsNullOrEmpty(m_State.directory))
+        string[] guids = AssetDatabase.FindAssets("t:Slide ");
+        m_Slides = new Slide[guids.Length];
+        for (int i = 0; i < guids.Length; i++)
         {
-            m_Slides = new Slide[0];
+            string assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
+            m_Slides[i] = AssetDatabase.LoadAssetAtPath<Slide>(assetPath);
         }
-        else
-        {
-            string[] guids = AssetDatabase.FindAssets("t:Slide ", new string[] { m_State.directory });
-            m_Slides = new Slide[guids.Length];
-            for (int i = 0; i < guids.Length; i++)
-            {
-                string assetPath = AssetDatabase.GUIDToAssetPath(guids[i]);
-                m_Slides[i] = AssetDatabase.LoadAssetAtPath<Slide>(assetPath);
-            }
-        }
+
         LoadSlide();
     }
 

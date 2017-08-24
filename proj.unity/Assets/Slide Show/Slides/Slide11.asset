@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide11
   m_EditorClassIdentifier: 
-  title: Open Visual Studio
-  slideImage: {fileID: 2800000, guid: d036b42a6e5adf549be6e4d8520f4f62, type: 3}
-  references: []
+  title: Resource Paths
+  slideImage: {fileID: 2800000, guid: 7a2a7e915e5316043acce033f43e37c5, type: 3}
+  context: {fileID: 11400000, guid: 6d27b7e24cb294441943fda361633251, type: 2}

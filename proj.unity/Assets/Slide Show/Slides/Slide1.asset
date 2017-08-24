@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide1
   m_EditorClassIdentifier: 
-  title: MUGG Splash
-  slideImage: {fileID: 2800000, guid: a9f9f72439f6bae4d9c706611d074853, type: 3}
-  references: []
+  title: Intro Splash
+  slideImage: {fileID: 2800000, guid: 9b7f3d69e06da5f4d85bb22858cf9cde, type: 3}
+  context: {fileID: 0}

@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide12
   m_EditorClassIdentifier: 
-  title: The Object Reference Problem
-  slideImage: {fileID: 2800000, guid: 72d4b35c21630b444b3e362ca5fa5d7d, type: 3}
-  references: []
+  title: Copy Path Utility
+  slideImage: {fileID: 2800000, guid: 6146e73c0db3542458d4ec4e93c938bf, type: 3}
+  context: {fileID: 11500000, guid: 89d440d0c0db97c4facd60c3e9a95590, type: 3}

@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide8
   m_EditorClassIdentifier: 
-  title: Asset Database
-  slideImage: {fileID: 2800000, guid: d5b24beb65238e64ba00331fa292e21f, type: 3}
-  references: []
+  title: Serialized Properties Example
+  slideImage: {fileID: 2800000, guid: 56971eba50ff1b1428603272032b136c, type: 3}
+  context: {fileID: 11500000, guid: 7b06975731f235142a6c5cfbfe3f4939, type: 3}

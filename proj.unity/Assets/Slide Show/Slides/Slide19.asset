@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide19
   m_EditorClassIdentifier: 
-  title: Have your cake?
-  slideImage: {fileID: 2800000, guid: fcfc489a1f530f447a1f7f50a57a4003, type: 3}
-  references: []
+  title: Lipstick on a Pig
+  slideImage: {fileID: 2800000, guid: c6d6dae2b713c5c4f80b25706c6326c2, type: 3}
+  context: {fileID: 0}

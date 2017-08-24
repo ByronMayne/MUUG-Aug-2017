@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide7
   m_EditorClassIdentifier: 
-  title: Open Visual Studio
-  slideImage: {fileID: 2800000, guid: b945875636e9ae94c813425419005692, type: 3}
-  references: []
+  title: Assetdatbase Examples
+  slideImage: {fileID: 2800000, guid: d5eeeb2a85c57f8498076e13807004d0, type: 3}
+  context: {fileID: 11500000, guid: e5c5ec72139b7c646b7b6b6e33680ba7, type: 3}

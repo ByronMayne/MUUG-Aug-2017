@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide21
   m_EditorClassIdentifier: 
-  title: Open VIsual Studio
-  slideImage: {fileID: 2800000, guid: 2d158e967f43f014ca6cecb86668f041, type: 3}
-  references: []
+  title: AssetPath Goals
+  slideImage: {fileID: 2800000, guid: dbfaf1bc0538fd146b34636a7f7a6ed4, type: 3}
+  context: {fileID: 11500000, guid: 4676552102b88dd4d8feab5010f75df2, type: 3}

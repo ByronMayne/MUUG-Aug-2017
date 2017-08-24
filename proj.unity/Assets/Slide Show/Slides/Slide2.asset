@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Name: Slide2
   m_EditorClassIdentifier: 
   title: Slack + Unity
-  slideImage: {fileID: 2800000, guid: 26eb81e36b1d7ff44a33cbcb5b7a3f4b, type: 3}
-  references: []
+  slideImage: {fileID: 2800000, guid: 0e45d0f2e975565498ac5aa7ae99e91e, type: 3}
+  context: {fileID: 0}

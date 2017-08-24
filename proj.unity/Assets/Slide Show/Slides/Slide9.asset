@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide9
   m_EditorClassIdentifier: 
-  title: Open Visual Studio
-  slideImage: {fileID: 2800000, guid: 8b346dd34cd62504d8f456096ab0637c, type: 3}
-  references: []
+  title: The Object Refernce Problem
+  slideImage: {fileID: 2800000, guid: 48c9308201807784398355ddcd7d8a27, type: 3}
+  context: {fileID: 0}

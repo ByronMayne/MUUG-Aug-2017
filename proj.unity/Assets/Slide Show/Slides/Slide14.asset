@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48a2334fc2202f448a58642fdfbde81, type: 3}
   m_Name: Slide14
   m_EditorClassIdentifier: 
-  title: Resource Paths
-  slideImage: {fileID: 2800000, guid: e01367e1ebf52c84f89ef56b533fe16b, type: 3}
-  references: []
+  title: Dragging Makes Everthing...
+  slideImage: {fileID: 2800000, guid: a7fe0c9b4fe20d149b86ca76294fbfab, type: 3}
+  context: {fileID: 11500000, guid: a7768342ee05a8841bcc201411e08f40, type: 3}
